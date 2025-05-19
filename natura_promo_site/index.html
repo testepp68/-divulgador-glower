@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Promoções Natura</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌸 Gerador de Promoções Natura</h1>
+    <input type="text" id="linkProduto" placeholder="Cole o link do produto Natura" />
+    <button onclick="gerarPromocao()">Gerar Promoção</button>
+
+    <div id="resultado" style="display:none;">
+      <h2>🎯 Sua promoção está pronta:</h2>
+      <textarea id="mensagemPromocao" readonly></textarea>
+      <button onclick="copiarTexto()">📋 Copiar Promoção</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
