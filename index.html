@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Divulgador Glower</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      text-align: center;
+      padding: 40px;
+    }
+    textarea, input {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📣 Gerador de Divulgação Glower</h1>
+  <p>Cole o link do produto abaixo:</p>
+
+  <input type="text" id="link" placeholder="https://..." />
+
+  <button onclick="gerarTexto()">Gerar Divulgação</button>
+
+  <h3>📝 Texto para Divulgação:</h3>
+  <textarea id="saida" rows="6" readonly></textarea>
+
+  <script>
+    function gerarTexto() {
+      const link = document.getElementById("link").value.trim();
+      if (!link) {
+        alert("Cole um link válido!");
+        return;
+      }
+
+      const texto = `🔥 Achado incrível na internet!
+
+🛍️ Confira essa oferta:
+🔗 ${link}
+
+💸 Aproveite antes que acabe!
+#promoção #achadinhos #ofertas`;
+
+      document.getElementById("saida").value = texto;
+    }
+  </script>
+
+</body>
+</html>
