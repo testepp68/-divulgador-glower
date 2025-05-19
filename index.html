@@ -1,67 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Divulgador Glower</title>
+  <meta charset="UTF-8" />
+  <title>Gerador de Promoções Natura</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f6f6f6;
-      text-align: center;
-      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
     }
-    textarea, input {
-      width: 80%;
+    input, button, textarea {
+      width: 100%;
       padding: 10px;
       margin-top: 10px;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      box-sizing: border-box;
     }
     button {
-      padding: 10px 20px;
-      border: none;
-      background: #4CAF50;
+      background-color: #2e7d32;
       color: white;
-      border-radius: 8px;
+      border: none;
       cursor: pointer;
-      margin-top: 15px;
     }
     button:hover {
-      background: #45a049;
+      background-color: #1b5e20;
+    }
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .resultado {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h1>📣 Gerador de Divulgação Glower</h1>
-  <p>Cole o link do produto abaixo:</p>
+  <h1>Gerador de Promoções Natura</h1>
+  <p>Digite o código do produto Natura para gerar a promoção automática.</p>
 
-  <input type="text" id="link" placeholder="https://..." />
+  <input type="text" id="codigoProduto" placeholder="Digite o código do produto" />
 
-  <button onclick="gerarTexto()">Gerar Divulgação</button>
+  <button onclick="gerarPromocao()">Gerar Promoção</button>
 
-  <h3>📝 Texto para Divulgação:</h3>
-  <textarea id="saida" rows="6" readonly></textarea>
+  <div class="resultado" id="resultadoDiv" style="display:none;">
+    <h2>Promoção Gerada:</h2>
+    <textarea id="textoPromocao" rows="6" readonly></textarea>
+    <img id="imagemProduto" src="" alt="" />
+  </div>
 
   <script>
-    function gerarTexto() {
-      const link = document.getElementById("link").value.trim();
-      if (!link) {
-        alert("Cole um link válido!");
+    // Banco interno de produtos Natura
+    const produtosNatura = {
+      "12345": {
+        nome: "Perfume Natura Essencial",
+        imagem: "https://natura.vtexassets.com/arquivos/ids/182257-800-auto?v=637746115151170000&width=800&height=auto&aspect=true",
+        preco: "R$ 120,00",
+        url: "https://www.natura.com.br/perfume-natura-essencial/p"
+      },
+      "67890": {
+        nome: "Creme Facial Natura Chronos",
+        imagem: "https://natura.vtexassets.com/arquivos/ids/182211-800-auto?v=637745948009530000&width=800&height=auto&aspect=true",
+        preco: "R$ 75,00",
+        url: "https://www.natura.com.br/creme-facial-chronos-hidratante/p"
+      },
+      "54321": {
+        nome: "Sabonete Líquido Natura Ekos",
+        imagem: "https://natura.vtexassets.com/arquivos/ids/182289-800-auto?v=637746088445900000&width=800&height=auto&aspect=true",
+        preco: "R$ 30,00",
+        url: "https://www.natura.com.br/sabonete-liquido-ekos/p"
+      }
+    };
+
+    function gerarPromocao() {
+      const codigo = document.getElementById('codigoProduto').value.trim();
+
+      if (!codigo) {
+        alert('Por favor, digite o código do produto.');
         return;
       }
 
-      const texto = `🔥 Achado incrível na internet!
+      const produto = produtosNatura[codigo];
 
-🛍️ Confira essa oferta:
-🔗 ${link}
+      if (!produto) {
+        alert('Código não encontrado! Verifique e tente novamente.');
+        return;
+      }
 
-💸 Aproveite antes que acabe!
-#promoção #achadinhos #ofertas`;
+      const texto = `🌿 Promoção Natura!  
+Produto: ${produto.nome}  
+Preço: ${produto.preco}  
+Confira aqui: ${produto.url}  
 
-      document.getElementById("saida").value = texto;
+Aproveite essa oferta exclusiva e garanta já o seu! ✨`;
+
+      // Mostrar resultado
+      document.getElementById('textoPromocao').value = texto;
+      const img = document.getElementById('imagemProduto');
+      img.src = produto.imagem;
+      img.alt = produto.nome;
+
+      document.getElementById('resultadoDiv').style.display = 'block';
     }
   </script>
 
 </body>
 </html>
+
